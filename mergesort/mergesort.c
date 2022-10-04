@@ -24,8 +24,8 @@ void merging(int *l, int l_size, int *r, int r_size){
 
 void mergesort(int size, int values[]) {
     int *l = values;
-    int *r = values + size/2;
-    int l_size = size/2;
+    int *r = values + size / 2;
+    int l_size = size / 2;
     int r_size = size - r_size;
     if(size > 1){
         mergesort(l_size, l);
@@ -36,7 +36,6 @@ void mergesort(int size, int values[]) {
   // `malloc/calloc` and `free`, so make sure you explicitly
   // allocate any new arrays that you need, even if you
   // might not strictly need to.
-  return;
 }
 
 
