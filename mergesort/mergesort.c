@@ -26,7 +26,7 @@ void mergesort(int size, int values[]) {
     int *l = values;
     int *r = values + size / 2;
     int l_size = size / 2;
-    int r_size = size - r_size;
+    int r_size = size - l_size;
     if(size > 1){
         mergesort(l_size, l);
         mergesort(r_size, r);
