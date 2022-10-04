@@ -1,36 +1,33 @@
+#include <stdlib.h>
+#include <string.h>
 #include "mergesort.h"
 #define MAX_SIZE 10
 
-void merging(int *l, int l_size, int *r, int r_size){
-	int i, j, k, temp[MAX_SIZE];
-	i=j=k=0;
-	while (i<l_size && j<r_size){
-		if(l[i]<r[j]){
-            temp[k++] = l[i++];
-		} else {
-            temp[k++] = r[j++];
-        }
-	}
-    while(i<l_size){
-        temp[k++] = l[i++];
-    }
-    while(j<r_size){
-        temp[k++] = r[j++];
-    }
-    for(int i=0; i<l_size + r_size; i++){
-        l[i] = temp[i];
-    }
-}
-
 void mergesort(int size, int values[]) {
-    int *l = values;
-    int *r = values + size / 2;
-    int l_size = size / 2;
-    int r_size = size - l_size;
-    if(size > 1){
-        mergesort(l_size, l);
-        mergesort(r_size, r);
-        merging(l, l_size, r, r_size);
+    int i, next, left_min, right_min, right_max, left_max;
+    int *temp = (int *)malloc(size * sizeof(int));
+    for(i=1; i<size; i*=2){
+        for(left_min = 0; left_min < size - i; left_min = right_max){
+            right_min = left_max = left_min + i;
+            right_max = left_max + i;
+            if(right_max > size){
+                right_max = size;
+            }
+            next = 0;
+            while(left_min < left_max && right_min < right_max){
+                if(values[left_min] < values[right_min]){
+                    temp[next++] = values[left_min++];
+                } else{
+                    temp[next++] = values[right_min++];
+                }
+            }
+            while (left_min < left_max){
+                values[--right_min] = values[--left_max];
+            }
+            while (next > 0){
+                values[--right_min] = values[--next];
+            }
+        }
     }
   // Remember that a key goal here is to learn to use
   // `malloc/calloc` and `free`, so make sure you explicitly
