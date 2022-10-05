@@ -27,6 +27,7 @@ void mergesort(int size, int values[]) {
                 values[--right_min] = temp[--next];
             }
         }
+        free(temp);
     }
   // Remember that a key goal here is to learn to use
   // `malloc/calloc` and `free`, so make sure you explicitly
