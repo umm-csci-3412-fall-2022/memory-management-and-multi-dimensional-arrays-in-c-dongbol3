@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mergesort.h"
-#define MAX_SIZE 10
 
 void mergesort(int size, int values[]) {
     int i, next, left_min, right_min, right_max, left_max;
@@ -25,7 +24,7 @@ void mergesort(int size, int values[]) {
                 values[--right_min] = values[--left_max];
             }
             while (next > 0){
-                values[--right_min] = values[--next];
+                values[--right_min] = temp[--next];
             }
         }
     }
